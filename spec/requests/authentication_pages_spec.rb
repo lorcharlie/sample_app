@@ -44,6 +44,9 @@ require 'spec_helper'
       describe "followed by signout" do
         before { click_link "Sign out" }
         it { should have_link('Sign in') }
+        # Lab 10.1 Exercise 3
+        it { should_not have_link('Profile', href: user_path(user)) }
+        it { should_not have_link('Settings', href: edit_user_path(user)) }
       end
     end
   end
