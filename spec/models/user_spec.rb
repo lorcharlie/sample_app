@@ -192,7 +192,16 @@ describe User do
         Micropost.find_by_id(micropost.id).should be_nil
       end
     end
+
+    #Lab 12.1 Exercise 1
+    let(:other_user) { FactoryGirl.create(:user) }
+    it "should destroy any followed users" do
+      @user.follow!(other_user)
+      @user.unfollow!(other_user)
+    end
+
     
+
     describe "status" do
       let(:unfollowed_post) do
         FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
@@ -227,7 +236,7 @@ describe User do
     end
   end
 
-describe "micropost associations" do
+  describe "micropost associations" do
     before { @user.save }
     let!(:older_micropost) do 
       FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)
