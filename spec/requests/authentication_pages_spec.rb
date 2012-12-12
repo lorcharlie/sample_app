@@ -26,11 +26,8 @@ require 'spec_helper'
     end
     describe "with valid information" do
       let(:user) { FactoryGirl.create(:user) }
-      before do
-        fill_in "Email",    with: user.email
-        fill_in "Password", with: user.password
-        click_button "Sign in"
-      end
+      # Lab 10.2 Exercise 4
+      before { sign_in user }
 
       it { should have_selector('title', text: user.name) }
 
@@ -59,9 +56,8 @@ require 'spec_helper'
       describe "when attempting to visit a protected page" do
         before do
           visit edit_user_path(user)
-          fill_in "Email",    with: user.email
-          fill_in "Password", with: user.password
-          click_button "Sign in"
+          # Lab 10.2 Exercise 4
+          sign_in user 
         end
 
         describe "after signing in" do

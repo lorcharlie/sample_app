@@ -1,9 +1,8 @@
 include ApplicationHelper
 
 def valid_signin(user)
-  fill_in "Email",    with: user.email
-  fill_in "Password", with: user.password
-  click_button "Sign in"
+  # Lab 10.2 Exercise 4
+  sign_in user 
 end
 
 RSpec::Matchers.define :have_error_message do |message|
